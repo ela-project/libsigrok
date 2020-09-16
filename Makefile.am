@@ -303,6 +303,14 @@ src_libdrivers_la_SOURCES += \
 	src/hardware/dreamsourcelab-dslogic/protocol.c \
 	src/hardware/dreamsourcelab-dslogic/api.c
 endif
+if HW_EMBEDDED_LOGIC_ANALYZER
+src_libdrivers_la_SOURCES += \
+	src/hardware/embedded-logic-analyzer/ela-protocol-lib/src/ela_protocol.h \
+	src/hardware/embedded-logic-analyzer/ela-protocol-lib/src/ela_protocol.c \
+	src/hardware/embedded-logic-analyzer/protocol.h \
+	src/hardware/embedded-logic-analyzer/protocol.c \
+	src/hardware/embedded-logic-analyzer/api.c
+endif
 if HW_FLUKE_45
 src_libdrivers_la_SOURCES += \
 	src/hardware/fluke-45/protocol.h \
