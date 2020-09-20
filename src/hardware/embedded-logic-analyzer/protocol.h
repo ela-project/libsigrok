@@ -105,6 +105,9 @@ struct dev_context {
 	uint8_t sampled_info_buf[ELAP_SAMPLED_INFO_SIZE];
 };
 
+extern SR_PRIV const uint64_t samplerates[];
+extern SR_PRIV const size_t samplerates_count;
+
 SR_PRIV extern const char *ela_channel_names[];
 
 SR_PRIV int ela_send_cmd(struct sr_serial_dev_inst *serial, elap_cmd_t command);

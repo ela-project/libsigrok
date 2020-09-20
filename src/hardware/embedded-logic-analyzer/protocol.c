@@ -21,6 +21,29 @@
 
 #include "protocol.h"
 
+SR_PRIV const uint64_t samplerates[] = {
+	100,
+	200,
+	500,
+	SR_KHZ(1),
+	SR_KHZ(2),
+	SR_KHZ(5),
+	SR_KHZ(10),
+	SR_KHZ(20),
+	SR_KHZ(50),
+	SR_KHZ(100),
+	SR_KHZ(200),
+	SR_KHZ(500),
+	SR_MHZ(1),
+	SR_MHZ(2),
+	SR_MHZ(4),
+	SR_MHZ(6),
+	SR_MHZ(9),
+	SR_MHZ(12),
+};
+
+SR_PRIV const size_t samplerates_count = ARRAY_SIZE(samplerates);
+
 SR_PRIV int ela_send_cmd(struct sr_serial_dev_inst *serial, elap_cmd_t command)
 {
 	uint8_t buf[ELAP_CMD_MAX_SIZE];

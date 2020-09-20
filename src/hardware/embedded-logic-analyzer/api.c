@@ -262,8 +262,7 @@ static int config_list(uint32_t key, GVariant **data, const struct sr_dev_inst *
 		devc = sdi->priv;
 		if (devc->max_samplerate == 0)
 			return SR_ERR_NA;
-		samplerates[1] = devc->max_samplerate;
-		*data = std_gvar_samplerates_steps(ARRAY_AND_SIZE(samplerates));
+		*data = std_gvar_samplerates(samplerates, samplerates_count);
 		break;
 	case SR_CONF_TRIGGER_MATCH:
 		*data = std_gvar_array_i32(ARRAY_AND_SIZE(trigger_matches));
