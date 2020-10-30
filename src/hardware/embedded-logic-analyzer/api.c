@@ -246,11 +246,6 @@ static int config_list(uint32_t key, GVariant **data, const struct sr_dev_inst *
 											 const struct sr_channel_group *cg)
 {
 	struct dev_context *devc;
-	uint64_t samplerates[] = {
-			MIN_SAMPLERATE,
-			0,
-			SR_HZ(1),
-	};
 
 	switch (key) {
 	case SR_CONF_SCAN_OPTIONS:
@@ -262,7 +257,7 @@ static int config_list(uint32_t key, GVariant **data, const struct sr_dev_inst *
 		devc = sdi->priv;
 		if (devc->max_samplerate == 0)
 			return SR_ERR_NA;
-		*data = std_gvar_samplerates(samplerates, samplerates_count);
+		*data = std_gvar_samplerates(ela_samplerates, ela_samplerates_count);
 		break;
 	case SR_CONF_TRIGGER_MATCH:
 		*data = std_gvar_array_i32(ARRAY_AND_SIZE(trigger_matches));

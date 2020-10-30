@@ -21,7 +21,7 @@
 
 #include "protocol.h"
 
-SR_PRIV const uint64_t samplerates[] = {
+SR_PRIV const uint64_t ela_samplerates[] = {
 	100,
 	200,
 	500,
@@ -42,7 +42,7 @@ SR_PRIV const uint64_t samplerates[] = {
 	SR_MHZ(12),
 };
 
-SR_PRIV const size_t samplerates_count = ARRAY_SIZE(samplerates);
+SR_PRIV const size_t ela_samplerates_count = ARRAY_SIZE(ela_samplerates);
 
 SR_PRIV int ela_send_cmd(struct sr_serial_dev_inst *serial, elap_cmd_t command)
 {
@@ -222,13 +222,15 @@ SR_PRIV int ela_receive_sampled_data(const struct sr_dev_inst *sdi)
 	struct sr_serial_dev_inst *serial;
 	struct sr_datafeed_packet packet;
 	struct sr_datafeed_logic logic;
+	int timeout;
 
 	serial = sdi->conn;
 	devc = sdi->priv;
 
+	timeout = serial_timeout(serial, devc->num_of_sample_data);
 	if (serial_read_blocking(serial, devc->raw_sample_buf, devc->num_of_sample_data,
-													 serial_timeout(serial, devc->num_of_sample_data)) !=
-			devc->num_of_sample_data) {
+													 (timeout < 0 || (unsigned int)timeout !=
+			devc->num_of_sample_data))) {
 		sr_dbg("Error, sampled data");
 		return SR_ERR;
 	}
