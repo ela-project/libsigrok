@@ -30,7 +30,7 @@
 
 #include "libsigrok-internal.h"
 
-#include "ela_protocol/ela_protocol.h"
+#include "ela-protocol-lib/src/ela_protocol.h"
 
 #define LOG_PREFIX "embedded-logic-analyzer"
 
