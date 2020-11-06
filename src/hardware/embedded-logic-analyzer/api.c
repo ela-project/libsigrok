@@ -170,10 +170,9 @@ static GSList *scan(struct sr_dev_driver *di, GSList *options)
 	for (i = 0; i < devc->max_channels; i++)
 		sr_channel_new(sdi, i, SR_CHANNEL_LOGIC, TRUE, ela_channel_names[i]);
 
-	memset(devc->pin_modes, PM_DIGITAL_ON, MAX_NUMBER_OF_INPUTS);
-	// for (i = 0; i < MAX_NUMBER_OF_INPUTS; i++) {
-	//	devc->pin_modes[i] = PM_DIGITAL_ON;
-	//}
+	for (i = 0; i < MAX_NUMBER_OF_INPUTS; i++) {
+		devc->pin_modes[i] = PM_DIGITAL_ON;
+	}
 
 	serial_close(serial);
 
